@@ -190,7 +190,7 @@ document.getElementById('experimentForm').addEventListener('submit', async funct
     };
 
     try {
-        const response = await fetch(`http://127.0.0.1:8000/run-experiments?func_str=${encodeURIComponent(funcStr)}&num_experiments=${numExperiments}`, {
+        const response = await fetch(`/api/run-experiments?func_str=${encodeURIComponent(funcStr)}&num_experiments=${numExperiments}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

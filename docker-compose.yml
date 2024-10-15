@@ -1,0 +1,27 @@
+services:
+  frontend:
+    container_name: FrontEnd
+    build: 
+      context: apache/
+    ports:
+      - "80:80" # Porta 80 no host mapeada para a porta 80 no container (APache)
+    volumes:
+      - ./src:/usr/local/apache2/htdocs
+    networks:
+      - backend_network
+    depends_on:
+      - api
+  
+  api:
+    container_name: BackEnd
+    build: 
+      context: ../GAdemo-api 
+    ports:
+      - "8000:8000"  # Porta 8000 para comunicação com o frontend
+    volumes:
+    - ../GAdemo-api/src:/gademo/src
+    networks:
+      - backend_network
+networks:
+  backend_network:
+    driver: bridge
